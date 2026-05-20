@@ -11,12 +11,6 @@ public:
             for(int i=0;i<va.size();i++){
                 if(va[i]==vb[i])
                 cnt+=va[i];
-                else if(va[i]!=0 && vb[i]!=0){
-                    int temp = va[i]>vb[i]?vb[i]:va[i];
-                    cnt+=temp;
-                }
-
-
             }
             ans.push_back(cnt);
         }

@@ -1,18 +1,18 @@
 class Solution {
 public:
     int maxDepth(string s) {
-        stack<char> st;
+        int st=0;
         int i =0;
         int maxi = INT_MIN;
         while(i<s.size()){
             char c = s[i];
-            if(s[i]=='(')
-                st.push(c);
+            if(c=='(')
+                st++;
             else if(c==')')
-                st.pop();
+                st--;
             else
-                cout<<"num\t";
-            maxi = max(maxi,(int)st.size());
+            cout<<"num\t";
+            maxi = max(maxi,st);
             i++;
         }
         return maxi;

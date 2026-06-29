@@ -14,22 +14,24 @@ public:
         int sum = 0;
         
         for(int n : nums) sum += n;
-        vector<vector<bool>> dp(nums.size(),vector<bool>(sum+1,false));
+        
         if(sum%2!=0)return false;
         sum = sum/2;
-        for(int i =0;i<nums.size();i++)
-        dp[i][0] = true;
+        vector<int> prev(sum+1,false),cur(sum+1,false);
+        prev[0] = true;
         if(nums[0]<=sum)
-        dp[0][nums[0]] = true;
+        prev[nums[0]] = true;
         for(int i =1;i<nums.size();i++){
+            cur[0]=true;
             for(int tar = 1;tar<=sum;tar++){
-                bool dontake = dp[i-1][tar];
+                bool dontake = prev[tar];
                 bool take = false;
                 if(nums[i]<=tar)
-                    take = dp[i-1][tar-nums[i]];
-                dp[i][tar] = dontake || take;
+                    take = prev[tar-nums[i]];
+                cur[tar] = dontake || take;
             }
+            prev = cur;
         }
-        return dp[nums.size()-1][sum];
+        return prev[sum];
     }
 };

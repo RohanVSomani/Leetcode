@@ -6,9 +6,9 @@ public:
             int rem = value % k;
             vector<long long> next(k);
             for (int r = 0; r < k; r++) {
-                int productRem = (r * rem) % k;
-                next[productRem] += state[r];
-                result[productRem] += state[r];
+                int remtemp = (r * rem) % k;
+                next[remtemp] += state[r];
+                result[remtemp] += state[r];
             }
             next[rem]++;
             result[rem]++;
